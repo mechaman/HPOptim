@@ -1,0 +1,15 @@
+{
+    "language"        : "PYTHON",
+    "main-file"       : "model.py",
+    "experiment-name" : "simple-model",
+    "likelihood"      : "NOISELESS",
+    "variables" : {
+        "numHidden1" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 12
+        }
+    }
+}
+

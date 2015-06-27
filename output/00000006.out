@@ -1,0 +1,25 @@
+Job launching after 0.15 seconds in submission.
+Running python job.
+Changed into dir /home/toor/Desktop/HPOptim
+Importing model.py
+Running model.main()
+Traceback (most recent call last):
+  File "/home/toor/Desktop/Spearmint/Spearmint/spearmint/launcher.py", line 243, in launch
+    result = python_launcher(job)
+  File "/home/toor/Desktop/Spearmint/Spearmint/spearmint/launcher.py", line 373, in python_launcher
+    result = module.main(job['id'], params)
+  File "/home/toor/Desktop/HPOptim/model.py", line 33, in main
+    return runModel(params)
+  File "/home/toor/Desktop/HPOptim/model.py", line 8, in runModel
+    l = cdll.LoadLibrary('/HPOptim/libcluaf.so')
+  File "/usr/lib/python2.7/ctypes/__init__.py", line 443, in LoadLibrary
+    return self._dlltype(name)
+  File "/usr/lib/python2.7/ctypes/__init__.py", line 365, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: /HPOptim/libcluaf.so: cannot open shared object file: No such file or directory
+Problem executing the function
+Job failed in 0.01 seconds.
+launch!
+Anything printed here will end up in the output directory for job #6
+(<type 'exceptions.OSError'>, OSError('/HPOptim/libcluaf.so: cannot open shared object file: No such file or directory',), <traceback object at 0x7f713f98e7e8>)
+Launcher launching!

@@ -30,11 +30,14 @@ function HPOptim.init(dir_p)
     local jsonContent = jsonFile:read("*all")
     
     local varBlock = string.match(jsonContent, '"variables"%s:%s%b{}')
-    local paramNamesQuotes = string.gmatch(varBlock, '"[%a]"')
-    
+    varBlock = string.match(varBlock,'%b{}')
+    print(varBlock)
+    local paramNamesQuotes = string.gmatch(varBlock, '"[%a*%d*]+" : {')
+ 
+        
     local paramNames = {}
     for nameQuotes in paramNamesQuotes do
-        paramNames[string.match(nameQuotes,'%a')] =  0
+        paramNames[string.match(nameQuotes,'[%a*%d*]+')] =  0
     end
     HPOptim.params = paramNames
     print("List of parameters in config.json: ")
@@ -43,19 +46,19 @@ function HPOptim.init(dir_p)
     end
 
     HPOptim.params['error'] = 0
-
+   
     io.close(jsonFile)
 end
 
 function HPOptim.clean()
-    os.execute("bash "..HPOptim.dir_path.."clean_up.sh")
+    os.execute("bash "..HPOptim.dir_path.."/HPOptim/clean_up.sh")
 end
 
 
 function HPOptim.getHP()
 
 
-    local handle = io.popen("ls "..HPOptim.dir_path.."output")
+    local handle = io.popen("ls "..HPOptim.dir_path.."/output")
     local result = handle:read("*a")
     handle:close()
 
@@ -64,7 +67,7 @@ function HPOptim.getHP()
     -- Take each file name and parse out the important values
     for k,v in pairs(filenames) do 
     -- Put into its own function
-        local file = io.open(HPOptim.dir_path.."output/"..v,"r") -- remember to prepend the whole path
+        local file = io.open(HPOptim.dir_path.."/output/"..v,"r") -- remember to prepend the whole path
         io.input(file)
         local content = file:read("*all")
         io.close(file)
@@ -94,8 +97,8 @@ end
 function HPOptim.findHP(time)
     -- put these in a script and then pass it argument HPOptim.dir_path... easier for people to change the locations of files etc.
     os.execute("mongod --fork --logpath $HOME/Desktop/log --dbpath /data/db")
-    os.execute("timeout "..time.."s python ~/Spearmint/Spearmint/spearmint/main.py "..HPOptim.dir_path..">/dev/null") 
-    HPOptim.getHP()
+    os.execute("timeout "..time.."s python $HOME/Desktop/Spearmint/Spearmint/spearmint/main.py "..HPOptim.dir_path..">/dev/null") 
+    --HPOptim.getHP()
 end
 
 function HPOptim.export2CSV()

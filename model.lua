@@ -1,4 +1,4 @@
---require 'torch'
+require 'torch'
 require 'nn'
 require 'cephes'
 
@@ -14,13 +14,12 @@ function getTableFromTensor(teData, nInputs, nOutputs)
    for i=1, 100 do
      tableData[i] = { train_X:narrow(1,i,1), train_y:narrow(1,i,1) }
    end
-   
+
    return tableData
 end
 -----------------------------------------
-local model = {}
 
-function model.trainHyper(tab_params) -- change after to just trainHyper... no returning model
+function trainHyper(tab_params) -- change after to just trainHyper... no returning model
 	-- Load Data
 	local train_data = torch.load("b_uniErr_train.txt", 'ascii')
  	local test_data = torch.load("b_uniErr_test.txt", 'ascii')
@@ -33,9 +32,9 @@ function model.trainHyper(tab_params) -- change after to just trainHyper... no r
 
  	-- define the FNN
   	local mlp = nn.Sequential()
-  	mlp:add(nn.Linear(nInputs, tab_params))
+  	mlp:add(nn.Linear(nInputs, tab_params['numHidden1']))
   	mlp:add(nn.Tanh())
- 	mlp:add(nn.Linear(tab_params, nOutputs))
+ 	mlp:add(nn.Linear(tab_params['numHidden1'], nOutputs))
 
  	-- Train the dataset
  	local criterion = nn.MSECriterion()
@@ -58,13 +57,14 @@ function model.trainHyper(tab_params) -- change after to just trainHyper... no r
    end
 
    local mse_arr = {}
+   local mse_avg
    for k,v in pairs(test_y) do
    		mse_arr[k] = criterion:forward(test_y_pred[k], test_y[k])
+   		mse_avg = mse_avg + mse_arr[k]
 		print("Test MSE:" .. mse_arr[k] )
 	end
+
+	mse_avg = mse_avg/10
+	return mse_avg
 	
 end
-
-
-
-return model

@@ -1,20 +1,14 @@
 {
     "language"        : "PYTHON",
     "main-file"       : "model.py",
-    "experiment-name" : "some_model",
+    "experiment-name" : "simple-model",
     "likelihood"      : "NOISELESS",
     "variables" : {
-        "numHidden1" : {
+        "x" : {
             "type" : "INT",
             "size" : 1,
             "min"  : 0,
-            "max"  : 10
-        },
-        "Blank" : {
-            "type" : "INT",
-            "size" : 1,
-            "min"  : 1,
-            "max"  : 2
+            "max"  : 12
         }
     }
 }

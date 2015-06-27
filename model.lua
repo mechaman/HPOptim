@@ -21,8 +21,8 @@ end
 
 function trainHyper(tab_params) -- change after to just trainHyper... no returning model
 	-- Load Data
-	local train_data = torch.load("b_uniErr_train.txt", 'ascii')
- 	local test_data = torch.load("b_uniErr_test.txt", 'ascii')
+	local train_data = torch.load("data/b_uniErr_train.txt", 'ascii')
+ 	local test_data = torch.load("data/b_uniErr_test.txt", 'ascii')
  
 
  	-- Input/Output Nodes
@@ -32,9 +32,14 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
 
  	-- define the FNN
   	local mlp = nn.Sequential()
-  	mlp:add(nn.Linear(nInputs, tab_params['numHidden1']))
-  	mlp:add(nn.Tanh())
- 	mlp:add(nn.Linear(tab_params['numHidden1'], nOutputs))
+    if tab_params['numHidden1'] == 0 then 
+      mlp:add(nn.Linear(nInputs,nOutputs))
+    else
+      mlp:add(nn.Linear(nInputs, tab_params['numHidden1']))
+      mlp:add(nn.Tanh())
+      mlp:add(nn.Linear(tab_params['numHidden1'], nOutputs))
+    end
+
 
  	-- Train the dataset
  	local criterion = nn.MSECriterion()
@@ -57,7 +62,7 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
    end
 
    local mse_arr = {}
-   local mse_avg
+   local mse_avg = 0
    for k,v in pairs(test_y) do
    		mse_arr[k] = criterion:forward(test_y_pred[k], test_y[k])
    		mse_avg = mse_avg + mse_arr[k]
@@ -65,6 +70,6 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
 	end
 
 	mse_avg = mse_avg/10
-	return mse_avg
+	return math.log(mse_avg)
 	
 end

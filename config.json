@@ -2,7 +2,7 @@
     "language"        : "PYTHON",
     "main-file"       : "model.py",
     "experiment-name" : "some_model",
-    "likelihood"      : "NOISELESS",
+    "likelihood"      : "GAUSSIAN",
     "variables" : {
         "numHidden1" : {
             "type" : "INT",

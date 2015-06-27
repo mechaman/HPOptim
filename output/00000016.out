@@ -1,0 +1,28 @@
+Job launching after 0.14 seconds in submission.
+Running python job.
+Changed into dir /home/toor/Desktop/HPOptim
+Importing model.py
+Running model.main()
+Got result 0.00830713566393
+Completed successfully in 0.08 seconds. [{u'main': 0.008307135663926601}]
+launch!
+Anything printed here will end up in the output directory for job #16
+Blank
+2.0
+numHidden1
+10.0
+# StochasticGradient: training
+# StochasticGradient: you have reached the maximum number of iterations
+# training error = 0.017816013341195
+Test MSE:0.094703276349667
+Test MSE:0.19464862634422
+Test MSE:4.0182156319719
+Test MSE:4.6478256302838
+Test MSE:0.16401420056555
+Test MSE:0.00014484843645111
+Test MSE:0.85716564507276
+Test MSE:0.06832325904452
+Test MSE:0.0051909841670422
+Test MSE:0.033185251052502
+The computed cost is : 0.008307
+Launcher launching!

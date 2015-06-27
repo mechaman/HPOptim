@@ -1,16 +1,28 @@
-Job launching after 0.21 seconds in submission.
+Job launching after 0.15 seconds in submission.
 Running python job.
 Changed into dir /home/toor/Desktop/HPOptim
 Importing model.py
 Running model.main()
-Got result 0.0
-Completed successfully in 0.27 seconds. [{u'main': 0.0}]
+Got result 0.556477665901
+Completed successfully in 0.04 seconds. [{u'main': 0.5564776659011841}]
 launch!
 Anything printed here will end up in the output directory for job #1
 Blank
 1.0
 numHidden1
 0.0
-error running function `trainHyper': /home/toor/torch/install/share/lua/5.1/nn/Linear.lua:18: bad argument #1 to 'size' (dimension 2 out of range of 0D tensor at /home/toor/torch/pkg/torch/generic/Tensor.c:17) 
-The computed cost is : 0.000000
+# StochasticGradient: training
+# StochasticGradient: you have reached the maximum number of iterations
+# training error = 0.0044032181689828
+Test MSE:0.54608704277248
+Test MSE:0.76113072294112
+Test MSE:5.9330572638911
+Test MSE:6.6931882726609
+Test MSE:0.69927177781122
+Test MSE:0.17573094606676
+Test MSE:1.8416402245205
+Test MSE:0.47972971255317
+Test MSE:0.25329733629462
+Test MSE:0.06203579303985
+The computed cost is : 0.556478
 Launcher launching!

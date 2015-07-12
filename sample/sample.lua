@@ -1,14 +1,7 @@
 require 'torch'
 require 'nn'
 require 'cephes'
-local HPOptim = require('/HPOptim/HPOptim.lua')
-
--- Use HPOptim Module
-HPOptim.init() -- Should grab this because it is required for HPOptim to be a subfolder of this current folder
-HPOptim.findHP(30)
-HPOptim.getHP()
-
-
+local HPOptim = require('/HPOptim/HPOptim.lua') -- load HPOptim module
 
 ----------------------- Test Architecture --------------------------------
 
@@ -28,6 +21,12 @@ function getTableFromTensor(teData, nInputs, nOutputs)
    return tableData
 end
 -----------------------------------------
+
+-- Usage HPOptim Module
+HPOptim.init() 
+HPOptim.clean()
+HPOptim.findHP(30) -- Spearmint runs for 30 seconds
+HPOptim.getHP()
 
 
 local train_data = torch.load("data/b_uniErr_train.txt", 'ascii')
@@ -65,7 +64,6 @@ mlp:add(nn.Linear(HPOptim.params.numHidden7, nOutputs))
 local criterion = nn.MSECriterion()
 local trainer = nn.StochasticGradient(mlp, criterion)
 trainer.maxIteration = 400
---trainer.learningRate = 0.01
 trainer.verbose = false
 trainer:train(dataset_train)
 
@@ -86,7 +84,6 @@ local mse_avg = 0
 for k,v in pairs(test_y) do
 		mse_arr[k] = criterion:forward(test_y_pred[k], test_y[k])
 		mse_avg = mse_avg + mse_arr[k]
-	--print("Test MSE:" .. mse_arr[k] )
 end
 
 mse_avg = mse_avg/10

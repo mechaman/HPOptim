@@ -21,8 +21,6 @@ end
 
 function trainHyper(tab_params) -- change after to just trainHyper... no returning model
 
-  print("Entered the Lua File...")
-
   tab_params['numHidden1'] = math.floor(math.pow(10,tab_params['numHidden1']))
   tab_params['numHidden2'] = math.floor(math.pow(10,tab_params['numHidden2']))
   tab_params['numHidden3'] = math.floor(math.pow(10,tab_params['numHidden3']))
@@ -43,7 +41,7 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
 	-- define the FNN
 	local mlp = nn.Sequential()
 
-  -- first layer is not there
+  -- MLP Construction Logic
   if (tab_params['numHidden1'] == 0) and (tab_params['numHidden2'] == 0) and (tab_params['numHidden3'] == 0) then 
     mlp:add(nn.Linear(nInputs,nOutputs))
   else
@@ -73,7 +71,6 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
  	local criterion = nn.MSECriterion()
   	local trainer = nn.StochasticGradient(mlp, criterion)
   	trainer.maxIteration = 400
-  	--trainer.learningRate = 0.01
   	trainer.verbose = false
   	trainer:train(dataset_train)
 

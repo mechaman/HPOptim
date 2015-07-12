@@ -24,3 +24,32 @@ HPOptim is a Lua module that allows the user to interface with the Bayesian Opti
 		Jasper Snoek, Kevin Swersky, Richard Zemel and Ryan Prescott Adams  
 		International Conference on Machine Learning, 2014 
 		
+#### HPOptim Usage:
+
+Place your Lua script in the same directory as the *HPOptim* directory and add the following lines:
+
+  ```lua
+  local HPOptim = require('/HPOptim/HPOptim.lua')
+  HPOptim.init()
+  HPOptim.findHP(60)
+  ```
+To access the hyper-parameters found by Spearmint in the rest of the code use HPOptim.params['key'] where 'key' is the name of the hyper-parameter.
+
+#### HPOptim:
+
+**Data Members**
+* **HPOptim.params['key']**
+
+  Returns the current optimal value for the hyper-parameter you defined in **config.json**. Replace 'key' with the name of the
+  hyper-parameter you want the value for. For example, HPOptim.params['learningRate'] returns the optimal learningRate.
+
+**Functions**
+* **HPOptim.init()**
+
+  Initializes HPOptim module.
+* **HPOptim.clean()**
+
+  Wipes all information from previous experiments including the state of previous Spearmint runs.
+* **HPOptim.findHP(seconds)**
+
+  Runs Spearmint for the number of *seconds* that you specify.

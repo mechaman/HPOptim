@@ -5,7 +5,7 @@ import cython
 
 def runModel(params):
 	lualib = ctypes.CDLL("/home/toor/torch/install/lib/libluajit.so", mode=ctypes.RTLD_GLOBAL)
-	l = cdll.LoadLibrary('libcluaf.so')
+	l = cdll.LoadLibrary('HPOptim/libcluaf.so')
 
 	l.computeCost.argtypes = [ctypes.POINTER(ctypes.c_char_p), ctypes.POINTER(ctypes.c_float), ctypes.c_int, ctypes.POINTER(ctypes.c_float)]
 

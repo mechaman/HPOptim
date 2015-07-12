@@ -1,7 +1,7 @@
 require 'torch'
 require 'nn'
 require 'cephes'
-local HPOptim = require('/HPOptim/HPOptim.lua') -- load HPOptim module
+
 
 ----------------------- Test Architecture --------------------------------
 
@@ -23,10 +23,10 @@ end
 -----------------------------------------
 
 -- Usage HPOptim Module
+local HPOptim = require('/HPOptim/HPOptim.lua') -- load HPOptim module
 HPOptim.init() 
-HPOptim.clean()
 HPOptim.findHP(30) -- Spearmint runs for 30 seconds
-HPOptim.getHP()
+
 
 
 local train_data = torch.load("data/b_uniErr_train.txt", 'ascii')

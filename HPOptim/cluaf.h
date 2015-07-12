@@ -6,7 +6,7 @@
 #ifndef cluaf_h
 #define cluaf_h
 
-void computeCost(char* arr_a, float* arr_b, float *result);
+void computeCost(char** arr_a, float* arr_b, int paramSize, float *result);
 
 
 #endif

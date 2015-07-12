@@ -1,0 +1,51 @@
+{
+    "language"        : "PYTHON",
+    "main-file"       : "model.py",
+    "experiment-name" : "some_model",
+    "likelihood"      : "GAUSSIAN",
+    "variables" : {
+        "numHidden1" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden2" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden3" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden4" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden5" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden6" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        },
+        "numHidden7" : {
+            "type" : "FLOAT",
+            "size" : 1,
+            "min"  : 0,
+            "max"  : 0.6021
+        }
+    }
+}
+

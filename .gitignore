@@ -1,6 +1,7 @@
 # Compiled Sources #
 ####################
 *.pyc
+*.o
 
 # Folders #
 ###########

@@ -1,12 +1,14 @@
 require 'torch'
 require 'nn'
 require 'cephes'
---local HPOptim = require('/HPOptim/HPOptim.lua')
+local HPOptim = require('/HPOptim/HPOptim.lua')
+
+-- Use HPOptim Module
+HPOptim.init() -- Should grab this because it is required for HPOptim to be a subfolder of this current folder
+HPOptim.findHP(30)
+HPOptim.getHP()
 
 
-HPOptim.init("/home/toor/Desktop/HPOptim")
-HPOptim.clean()
-HPOptim.findHP(420)
 
 ----------------------- Test Architecture --------------------------------
 
@@ -40,9 +42,22 @@ local dataset_train = getTableFromTensor(train_data, nInputs, nOutputs)
 -- define the FNN
 local mlp = nn.Sequential()
 
-mlp:add(nn.Linear(nInputs, HPOptim.numHidden1))
+
+mlp:add(nn.Linear(nInputs, HPOptim.params.numHidden1))
 mlp:add(nn.Tanh())
-mlp:add(nn.Linear(HPOptim.numHidden1, nOutputs))
+mlp:add(nn.Linear(HPOptim.params.numHidden1, HPOptim.params.numHidden2))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden2, HPOptim.params.numHidden3))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden3, HPOptim.params.numHidden4))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden4, HPOptim.params.numHidden5))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden5, HPOptim.params.numHidden6))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden6, HPOptim.params.numHidden7))
+mlp:add(nn.Tanh())
+mlp:add(nn.Linear(HPOptim.params.numHidden7, nOutputs))
 
 
 
@@ -71,9 +86,9 @@ local mse_avg = 0
 for k,v in pairs(test_y) do
 		mse_arr[k] = criterion:forward(test_y_pred[k], test_y[k])
 		mse_avg = mse_avg + mse_arr[k]
-	print("Test MSE:" .. mse_arr[k] )
+	--print("Test MSE:" .. mse_arr[k] )
 end
 
 mse_avg = mse_avg/10
 
-print(mse_avg)
+print("Average Testing MSE: "..mse_avg)

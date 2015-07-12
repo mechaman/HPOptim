@@ -20,26 +20,54 @@ end
 -----------------------------------------
 
 function trainHyper(tab_params) -- change after to just trainHyper... no returning model
-	-- Load Data
+
+  print("Entered the Lua File...")
+
+  tab_params['numHidden1'] = math.floor(math.pow(10,tab_params['numHidden1']))
+  tab_params['numHidden2'] = math.floor(math.pow(10,tab_params['numHidden2']))
+  tab_params['numHidden3'] = math.floor(math.pow(10,tab_params['numHidden3']))
+  tab_params['numHidden4'] = math.floor(math.pow(10,tab_params['numHidden4']))
+  tab_params['numHidden5'] = math.floor(math.pow(10,tab_params['numHidden5']))
+  tab_params['numHidden6'] = math.floor(math.pow(10,tab_params['numHidden6']))
+  tab_params['numHidden7'] = math.floor(math.pow(10,tab_params['numHidden7']))
+  
+  	-- Load Data
 	local train_data = torch.load("data/b_uniErr_train.txt", 'ascii')
  	local test_data = torch.load("data/b_uniErr_test.txt", 'ascii')
  
-
  	-- Input/Output Nodes
  	local nInputs = 2
  	local nOutputs = 1
  	local dataset_train = getTableFromTensor(train_data, nInputs, nOutputs)
 
- 	-- define the FNN
-  	local mlp = nn.Sequential()
-    if tab_params['numHidden1'] == 0 then 
-      mlp:add(nn.Linear(nInputs,nOutputs))
-    else
-      mlp:add(nn.Linear(nInputs, tab_params['numHidden1']))
+	-- define the FNN
+	local mlp = nn.Sequential()
+
+  -- first layer is not there
+  if (tab_params['numHidden1'] == 0) and (tab_params['numHidden2'] == 0) and (tab_params['numHidden3'] == 0) then 
+    mlp:add(nn.Linear(nInputs,nOutputs))
+  else
+    local numBefOutput = nInputs
+
+    if (tab_params['numHidden1'] ~= 0) then
+      mlp:add(nn.Linear(numBefOutput, tab_params['numHidden1']))
       mlp:add(nn.Tanh())
-      mlp:add(nn.Linear(tab_params['numHidden1'], nOutputs))
+      numBefOutput = tab_params['numHidden1']
     end
 
+    if(tab_params['numHidden2'] ~= 0) then
+      mlp:add(nn.Linear(numBefOutput, tab_params['numHidden2']))
+      mlp:add(nn.Tanh())
+      numBefOutput = tab_params['numHidden2']
+    end
+
+    if(tab_params['numHidden3'] ~= 0) then
+      mlp:add(nn.Linear(numBefOutput, tab_params['numHidden3']))
+      mlp:add(nn.Tanh())
+      numBefOutput = tab_params['numHidden3']
+    end
+    mlp:add(nn.Linear(numBefOutput, nOutputs))
+  end
 
  	-- Train the dataset
  	local criterion = nn.MSECriterion()
@@ -70,6 +98,6 @@ function trainHyper(tab_params) -- change after to just trainHyper... no returni
 	end
 
 	mse_avg = mse_avg/10
-	return math.log(mse_avg)
+	return mse_avg
 	
 end

@@ -1,6 +1,6 @@
 HPOptim
 =========================================
-HPOptim is a Lua module that allows the user to interface with the Bayesian Optimization software package known as Spearmint via the Torch shell or within a Torch script. Before getting started, make sure that you have Spearmint setup properly [Spearmint](https://github.com/HIPS/Spearmint) as well as [Torch](https://github.com/torch). The goal of this project is to provide a convenient way for Torch users to perform hyper-parameter optimization using only Lua and the Torch framework.
+HPOptim is a Lua module that allows the user to interface with the Bayesian Optimization software package known as Spearmint via the Torch shell or within a Torch script. Before getting started, make sure that you have [Spearmint](https://github.com/HIPS/Spearmint) setup properly as well as [Torch](https://github.com/torch). The goal of this project is to provide a convenient way for Torch users to perform hyper-parameter optimization using only Lua and the Torch framework.
 
 #### Setup
 **STEP 1: Clone HPOptim**

@@ -9,7 +9,7 @@ HPOptim is a Lua module that allows the user to interface with the Bayesian Opti
 
 **STEP 2: Create model.lua & config.json** 
 
-1. The HPOptim folder must always exist in the same directory as
+1. The HPOptim folder & model.py must always exist in the same directory as
 config.json and model.lua.
 2. The config.json file is a list of the different hyper-parameters along with properties such as the type or range of values to try for each hyper-parameter.
 3. The model.lua file must contain a function named trainHyper that takes a table as input and returns an error. The table is made up of key-value pairs where the keys are the names of the parameters you defined in config.json and the values are the suggested hyper-parameter values from Spearmint. Access these suggested values in model.lua to completely define your objective function or model. Samples of these files can be found in the sample directory.

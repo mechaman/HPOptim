@@ -35,6 +35,14 @@ Place your Lua script in the same directory as the *HPOptim* directory and add t
   ```
 To access the hyper-parameters found by Spearmint in the rest of the code use HPOptim.params['key'] where 'key' is the name of the hyper-parameter.
 
+**Sample Usage**
+
+To test a working example, move the contents in the *sample* directory into the same directory as *HPOptim* and *model.py*.
+You should have added the config file, model.lua containing trainHyper(...), the sample.lua script that uses the HPOptim module and finally a folder with data. Both config.json and model.lua can be used as templates for future reference. By running *sample.lua*, you should see results.
+
+This particular sample optimizes a neural network for both the number of hidden layers and well as the number of hidden units in each layer.
+I will add a simpler example soon.
+
 #### HPOptim:
 
 **Data Members**

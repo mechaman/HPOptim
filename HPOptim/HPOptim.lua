@@ -72,7 +72,7 @@ function HPOptim.getHP()
      
         print(string.match(content, 'Got result ([%d%.]+)'))
         
-        if cost >= tonumber(string.match(content, 'Got result ([%d%.]+)')) then
+        if cost >= tonumber(string.match(content, 'Got result ([%d%.]+)')) then -- if current result smaller then assign
             local keyset={}
             local n=0
             for k,v in pairs(HPOptim.params) do
@@ -88,10 +88,14 @@ function HPOptim.getHP()
                 HPOptim.params[keyset[i]] = tonumber(string.match(withAlpha,'[%d%.]+'))
               end 
             end
+
+            cost = tonumber(string.match(content, 'Got result ([%d%.]+)'))
+       		HPOptim.params['error'] = cost
+
         end
         -- Take the final value out
-        cost = tonumber(string.match(content, 'Got result ([%d%.]+)'))
-        HPOptim.params['error'] = cost
+        --cost = tonumber(string.match(content, 'Got result ([%d%.]+)'))
+        --HPOptim.params['error'] = cost
   
     end
 end

@@ -23,7 +23,9 @@ HPOptim is a Lua module that allows the user to interface with the Bayesian Opti
 		Input Warping for Bayesian Optimization of Non-stationary Functions  
 		Jasper Snoek, Kevin Swersky, Richard Zemel and Ryan Prescott Adams  
 		International Conference on Machine Learning, 2014 
-		
+
+6. To use all of Spearmints different options such as taking advantage of clusters, you can go into findhp.sh and change the Spearmint call with the desired parameters.
+7. 
 #### HPOptim Usage:
 
 Place your Lua script in the same directory as the *HPOptim* directory and add the following lines:

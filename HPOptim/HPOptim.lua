@@ -102,9 +102,10 @@ end
 
 function HPOptim.findHP(time)
     -- put these in a script and then pass it argument HPOptim.... easier for people to change the locations of files etc.
-    os.execute("mongod --fork --logpath $HOME/Desktop/log --dbpath /data/db")
-    os.execute("timeout "..time.."s python $HOME/Desktop/Spearmint/spearmint/main.py "..HPOptim.dir_path) 
-    HPOptim.getHP()
+   os.execute("mongod --fork --logpath $HOME/Desktop/log --dbpath /data/db")
+   --os.execute("timeout "..time.."s python $HOME/Desktop/Spearmint/spearmint/main.py "..HPOptim.dir_path) 
+	 os.execute("bash "..HPOptim.dir_path.."/HPOptim/findhp.sh "..HPOptim.dir_path.." "..time.."s")
+	HPOptim.getHP()
 end
 
 function HPOptim.export2CSV()
